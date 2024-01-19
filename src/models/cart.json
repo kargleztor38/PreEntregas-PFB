@@ -1,0 +1,19 @@
+[
+  {
+    "id": "9bdebae9-79c0-41f0-a47f-24899d0dd347",
+    "products": [
+      {
+        "idCP": "cartProducts1",
+        "quantity": 2
+      }
+    ]
+  },
+  {
+    "id": "3d7f2f63-ff3c-4d19-8097-c74baf00fde1",
+    "products": []
+  },
+  {
+    "id": "c0e3f2ab-b842-403a-9401-7cfe7d7cf3ae",
+    "products": []
+  }
+]
