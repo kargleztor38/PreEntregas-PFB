@@ -1,5 +1,5 @@
-const { Router } = require('express')
-const CartManager = require('../controllers/cartsManager')
+import { Router } from 'express'
+import CartManager from '../controllers/cartsManager.js'
 
 const routerCart = new Router()
 const myCarts = new CartManager()
@@ -21,4 +21,4 @@ routerCart.post('/:cid/products/:pid', async (req, res) => {
 	res.send('Producto agregado correctamente')
 })
 
-module.exports = routerCart
+export default routerCart;

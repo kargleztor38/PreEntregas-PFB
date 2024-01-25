@@ -1,6 +1,5 @@
-const fs = require('fs/promises')
-const uuid4 = require('uuid4')
-
+import { promises as fs } from 'fs';
+import uuid4 from 'uuid4';
 
 class ProductManager {
 	constructor () {
@@ -77,4 +76,4 @@ class ProductManager {
 	}
 }
 
-module.exports = ProductManager
+export default ProductManager;

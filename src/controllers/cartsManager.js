@@ -1,5 +1,5 @@
-const fs = require('fs/promises')
-const uuid4 = require('uuid4')
+import { promises as fs } from 'fs';
+import uuid4 from 'uuid4';
 
 class CartManager {
 	constructor() {
@@ -50,4 +50,4 @@ class CartManager {
 	}
 }
 
-module.exports = CartManager
+export default CartManager;
