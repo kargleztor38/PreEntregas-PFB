@@ -1,6 +1,5 @@
 import { Router } from 'express';
 import ProductManager from '../controllers/productsManager.js';
-// import addProd from '../public/js/index.js';
 
 const myViews = new ProductManager();
 const routerViews = new Router();
