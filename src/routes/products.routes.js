@@ -18,15 +18,12 @@ routerProd.get('/:pid', async (req, res) => {
 })
 
 routerProd.post('/', async (req, res) => {
-	const { title, description, img, code, stock, price, category, status } = req.body
-	const prodAdd = await myProducts.addProduct(title, description, img, code, stock, price, category, status)
+	const prodAdd = await myProducts.addProduct(req.body)
 	res.send(prodAdd)
 })
 
 routerProd.put('/:id', async (req, res) => {
-	const { id } = req.params
-	const { title, description, img, code, stock, price, category, status = true } = req.body
-	const prodAdd = await myProducts.updateProductById(id, { title, description, img, code, stock, price, category, status })
+	const prodAdd = await myProducts.updateProductById(req.params, req.body)
 	res.send(prodAdd)
 })
 

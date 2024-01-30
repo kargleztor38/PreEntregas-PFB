@@ -2,14 +2,28 @@
 <div class="prod">
 	{{#each products}}
 		<div class="card">
-			<h1>{{this.title}}</h1>
-			<p>{{this.description}}</p>
-			<img>{{this.img}}</img>
-			<p>{{this.code}}</p>
-			<p>{{this.stock}}</p>
-			<p>{{this.price}}</p>
-			<p>{{this.category}}</p>
-			<p>{{this.status}}</p>
+			<div class="image">
+				<img>{{this.img}}</img>
+			</div>
+			<div class="content">
+				<span class="title">
+					Titulo: {{this.title}}
+				</span>
+				<p class="desc">
+					Descripción: {{this.description}}
+				</p>
+				<p class="desc">Codigo: {{this.code}}</p>
+				<p class="desc">Stock: {{this.stock}}</p>
+				<p class="desc">Precio: {{this.price}}</p>
+				<p class="desc">Categoría: {{this.category}}</p>
+				<p class="desc">Estado: {{this.status}}</p>
+				<button class="action">
+					Eliminar
+					<span aria-hidden="true">
+						→
+					</span>
+				</button>
+			</div>
 		</div>
 	{{/each}}
 </div>

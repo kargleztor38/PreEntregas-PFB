@@ -1,6 +1,6 @@
 <div class="formContainer">
 	<h2>Productos</h2>
-	<form onsubmit="return addProd()" id="form" class="form">
+	<form id="form" class="form">
 		<input type="text" name="title" id="titleId" placeholder="Title">
 		<input type="text" name="description" id="descriptionId" placeholder="Description">
 		<input type="text" name="img" id="imgId" placeholder="Image">
@@ -10,8 +10,14 @@
 		<input type="text" name="category" id="categoryId" placeholder="Category">
 		<input type="text" name="status" id="statusId" placeholder="Status">
 		<input type="submit" value="Enviar">
+		<input type="text" name="status" id="prodId" placeholder="Eliminar por el ID">
+		<input type="button" value="Eliminar" id="deleteId">
 	</form>
 </div>
 
+<div class="prod" id="listProd">
+
+</div>
+
 <script src="/socket.io/socket.io.js"></script>
-<script src="/js/index.js"></script>
+<script src="/js/realtime.js"></script>

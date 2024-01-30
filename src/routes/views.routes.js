@@ -2,14 +2,15 @@ import { Router } from 'express';
 import ProductManager from '../controllers/productsManager.js';
 
 const myViews = new ProductManager();
-const routerViews = new Router();
+const viewsRouter = new Router();
 
-routerViews.get('/realtimeproducts', async (req, res) => {
-	let viewAllProd = await myViews.getProduct();
-	console.log(viewAllProd);
-	res.render('realTimeProducts', {
-		products: viewAllProd,
-	})
+viewsRouter.get('/', async (req, res) => {
+	const allProducts = await myViews.getProduct()
+	res.render('home', { title: 'Express HandleBars end WebSocket', products: allProducts })
 })
 
-export default routerViews;
+viewsRouter.get('/realtimeproducts', async (req, res) => {
+	res.render('realTimeProducts')
+})
+
+export default viewsRouter
