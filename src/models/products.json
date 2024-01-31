@@ -42,5 +42,16 @@
     "price": "798",
     "category": "Electrodoméstico",
     "status": "true"
+  },
+  {
+    "id": "1d9568b6-f457-43fc-ab28-9eef2d695d1c",
+    "title": "Piano",
+    "description": "Instrumento Musical",
+    "img": "URL",
+    "code": "pi874bg",
+    "stock": "9",
+    "price": "879",
+    "category": "Musica",
+    "status": "true"
   }
 ]

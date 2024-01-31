@@ -76,8 +76,12 @@ body {
 }
 
 /* Estilos del formulario */
+.formContainer {
+  width: 23%;
+  text-align: center;
+}
+
 .form {
-  margin-left: 100px;
   display: flex;
   flex-direction: column;
   justify-content: center;
