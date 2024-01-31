@@ -1,15 +1,19 @@
 const socket = io()
 
-socket.on('sendProduct', (data) => {
+socket.on('sendProducts', (data) => {
 	productList(data);
 });
 
 const productList = (prod) => {
 	const productsContainer = document.getElementById('listProd');
-	let htmlProducts = '';
+	productsContainer.innerHTML = '';
+
 	prod.forEach(p => {
-		htmlProducts += `
-		<div class='card'>
+
+		const card = document.createElement('div')
+		card.className = 'card';
+
+		card.innerHTML = `
 			<div class="image">${ p.img }</div>
 			<div class="content">
 				<span class="title">
@@ -24,11 +28,15 @@ const productList = (prod) => {
 				<p class="desc">Categoría: ${ p.category }</p>
 				<p class="desc">Estado: ${ p.status }</p>
 				<p class="desc">ID: ${ p.id }</p>
-				<button onclick='deleteProd(${p.id})' type='button' class="action" id='eliminar'>Eliminar</button>
-			</div>
-		</div>`
+				<button type='button' class='action delete-btn' id='eliminar'>Eliminar</button>
+			</div>`
+
+		const deleteButton = card.querySelector('.delete-btn')
+		deleteButton.addEventListener('click', () => {
+			deleteProd(p.id)
+		});
+		productsContainer.appendChild(card);
 	});
-	productsContainer.innerHTML = htmlProducts;
 }
 
 const formEvent = document.getElementById('form')

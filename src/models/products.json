@@ -1,24 +1,35 @@
 [
   {
-    "id": "682c0cdc-6b12-4a9b-bcd9-2b10523eac3b",
-    "title": "Movil",
-    "description": "Celular Moto",
-    "img": "URL",
-    "code": "rg784oc",
-    "stock": "10",
-    "price": "7893",
-    "category": "Tecnología",
-    "status": "true"
-  },
-  {
-    "id": "24b5bb26-61ce-4884-9ad4-ca978f39dd0f",
+    "id": "3633371f-ccb8-4019-85af-94e892b05f1d",
     "title": "TV",
     "description": "Televisor Samsung",
     "img": "URL",
     "code": "hy64oks",
     "stock": "12",
-    "price": "7680",
+    "price": "679",
     "category": "Electrodoméstico",
+    "status": "true"
+  },
+  {
+    "id": "17592bf7-0c94-43e7-8080-8b321e51d60d",
+    "title": "Guitarra",
+    "description": "Instrumento Musical",
+    "img": "URL",
+    "code": "rg784oc",
+    "stock": "10",
+    "price": "789",
+    "category": "Musica",
+    "status": "true"
+  },
+  {
+    "id": "3401d43d-2c01-41c0-828c-b4564df1e316",
+    "title": "Movil",
+    "description": "Celular Moto",
+    "img": "URL",
+    "code": "gt78hkf",
+    "stock": "10",
+    "price": "980",
+    "category": "Tecnologia",
     "status": "true"
   }
 ]

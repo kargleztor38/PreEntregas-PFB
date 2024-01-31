@@ -22,7 +22,7 @@ class ProductManager {
 		return respJSON
 	}
 
-	addProduct = async (obj) => {
+	addProduct = async ( obj ) => {
 
 		const { title, description, img, code, stock, price, category, status = true } = obj
 
