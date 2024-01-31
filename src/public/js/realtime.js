@@ -31,10 +31,12 @@ const productList = (prod) => {
 				<button type='button' class='action delete-btn' id='eliminar'>Eliminar</button>
 			</div>`
 
-		const deleteButton = card.querySelector('.delete-btn')
+		const deleteButton = card.querySelector('.delete-btn');
+
 		deleteButton.addEventListener('click', () => {
 			deleteProd(p.id)
 		});
+
 		productsContainer.appendChild(card);
 	});
 }
@@ -56,6 +58,7 @@ formEvent.addEventListener('submit', (evt) => {
 	formEvent.reset();
 });
 
+// Eliminar productos con el input eliminar por ID
 const remove = document.getElementById('deleteId');
 
 remove.addEventListener('click', () => {
@@ -65,6 +68,7 @@ remove.addEventListener('click', () => {
 	inputDeleted.value = '';
 })
 
+// Eliminar productos con el botón eliminar de la tarjeta
 const deleteProd = (prodId) => {
 	socket.emit('deleteP', prodId);
 };

@@ -31,5 +31,16 @@
     "price": "980",
     "category": "Tecnologia",
     "status": "true"
+  },
+  {
+    "id": "c67f8836-20d2-4b7a-a8b0-be3f4234981f",
+    "title": "Lavadora",
+    "description": "LG Automatica",
+    "img": "URL",
+    "code": "au86glk",
+    "stock": "7",
+    "price": "798",
+    "category": "Electrodoméstico",
+    "status": "true"
   }
 ]
