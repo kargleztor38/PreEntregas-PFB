@@ -20,16 +20,5 @@
     "price": "7680",
     "category": "Electrodoméstico",
     "status": "true"
-  },
-  {
-    "id": "7c34cbb4-259a-403d-b311-638eceeb364b",
-    "title": "Guitarra",
-    "description": "Instrumento Musical",
-    "img": "URL",
-    "code": "bt746kl",
-    "stock": "10",
-    "price": "780",
-    "category": "Música",
-    "status": "true"
   }
 ]

@@ -1,5 +1,4 @@
 import { promises as fs } from 'fs';
-import { get } from 'http';
 import uuid4 from 'uuid4';
 
 class ProductManager {
