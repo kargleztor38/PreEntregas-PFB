@@ -1,0 +1,45 @@
+{{!-- <div class="chatContainer">
+  <h4 class="user" id="userName">Usuario</h4>
+  <div class="chatMessages">
+    <div class="message">
+      <p id="chat"></p>
+    </div>
+  </div>
+  <form class="formChat" id="formulario">
+    <input
+      class="inputChat"
+      type="text"
+      id="mensaje"
+      placeholder="Escriba el mensaje..."
+    />
+    <button class="button" id="enviar">Enviar</button>
+  </form>
+</div> --}}
+
+<div class="chat-card">
+  <div class="chat-header">
+    Chat de :  <p id="userName" class="chat-user"></p>
+  </div>
+  <div id="chatMessages" class="chat-window">
+    <ul id="chat" class="message-list"></ul>
+  </div>
+  <form id="formulario" class="chat-input">
+    <input
+      type="text"
+	    id="mensaje"
+      class="message-input"
+      placeholder="Escriba su mensaje aquí"
+    />
+    <button id="sendMessage" class="send-button">Send</button>
+    <button id="cleanChat" class="clean-button">Delete chat</button>
+  </form>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script
+  type="text/javascript"
+  src="https://cdn.jsdelivr.net/npm/toastify-js"
+></script>
+
+<script src="/socket.io/socket.io.js"></script>
+<script src="/js/chat.js"></script>

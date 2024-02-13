@@ -18,7 +18,7 @@
     "code": "rg784oc",
     "stock": "10",
     "price": "789",
-    "category": "Musica",
+    "category": "Música",
     "status": "true"
   },
   {
@@ -29,13 +29,13 @@
     "code": "gt78hkf",
     "stock": "10",
     "price": "980",
-    "category": "Tecnologia",
+    "category": "Tecnología",
     "status": "true"
   },
   {
     "id": "c67f8836-20d2-4b7a-a8b0-be3f4234981f",
     "title": "Lavadora",
-    "description": "LG Automatica",
+    "description": "LG Automática",
     "img": "URL",
     "code": "au86glk",
     "stock": "7",
@@ -51,7 +51,7 @@
     "code": "pi874bg",
     "stock": "9",
     "price": "879",
-    "category": "Musica",
+    "category": "Música",
     "status": "true"
   }
 ]

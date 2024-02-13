@@ -1,5 +1,5 @@
 import { Router } from 'express'
-import CartManager from '../controllers/cartsManager.js'
+import CartManager from '../Dao/fileSystem/controllers/cartsManager.js'
 
 const routerCart = new Router()
 const myCarts = new CartManager()
@@ -17,7 +17,7 @@ routerCart.get('/:cid', async (req, res) => {
 
 routerCart.post('/:cid/products/:pid', async (req, res) => {
 	const { cid, pid } = req.params
-	await myCarts.addProductCart( cid, pid )
+	await myCarts.addProductCart(cid, pid)
 	res.send('Producto agregado correctamente')
 })
 

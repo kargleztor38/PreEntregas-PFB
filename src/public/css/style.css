@@ -1,11 +1,21 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
 body {
+  padding-top: 1px;
   font-family: Arial, Helvetica, sans-serif;
   background-color: darkgrey;
   text-align: center;
-  display: flex;
 }
 
 /* Estilos de la tarjeta */
+.containerHome {
+  width: 1600px;
+  margin: 30px auto;
+}
+
 .prod {
   width: 1400px;
   margin: 0 auto;
@@ -17,7 +27,7 @@ body {
 }
 
 .card {
-  width: 250px;
+  width: 330px;
   border-radius: 0.5rem;
   background-color: #fff;
   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
@@ -72,6 +82,10 @@ body {
 }
 
 /* Estilos del formulario */
+.realTimeContainer {
+  display: flex;
+}
+
 .formContainer {
   width: 23%;
   text-align: center;
@@ -85,7 +99,51 @@ body {
   gap: 1rem;
 }
 
-input {
+.inputRealTime {
   padding: 10px 45px;
   border-radius: 7px;
+}
+
+/* estilos del chat */
+
+.chatContainer {
+  background-color: rgb(234, 244, 245);
+  margin: 30px auto;
+  width: 550px;
+  height: 70vh;
+  border-radius: 10px;
+  padding-top: 1px;
+}
+
+.user {
+  text-align: start;
+  font-size: 25px;
+  margin: 30px 29px;
+}
+
+.chatMessages {
+  width: 90%;
+  height: 70%;
+  /* border: 1px solid black; */
+  border-radius: 8px;
+  margin: 0 auto;
+}
+
+.formChat {
+  width: 90%;
+  margin: 0 auto;
+  padding-top: 40px;
+  border-radius: 6px;
+}
+
+.inputChat {
+  width: 70%;
+  padding: 16px 20px;
+  border-radius: 6px;
+}
+
+.button {
+  width: 20%;
+  padding: 16px 20px;
+  border-radius: 6px;
 }

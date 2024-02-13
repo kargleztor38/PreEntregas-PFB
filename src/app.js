@@ -3,19 +3,20 @@ import handlebars from 'express-handlebars';
 import { createServer } from 'http'; // <-- Modulo nativo de node.js para crear servidores con el protocolo http
 import { Server } from 'socket.io';
 import __dirname from './utils.js';
+import dbm from './Dao/db/indexMongoose.js'
 
 import routerProd from './routes/products.routes.js';
 import routerCart from './routes/carts.routes.js';
 import routerViews from './routes/views.routes.js';
-import socketProd from './listeners/socketproducts.js';
-
-
+import socketProd from './listeners/socketProducts.js';
+import socketChat from './listeners/socketChat.js';
 
 const app = express();
 const server = createServer(app); // <-- Creando un servidor http con express de argumento necesario para socket.io
 const io = new Server(server);
 const PORT = 8080;
 
+// Codigo necesarios para el correcto funcionamiento de express
 app.use(express.urlencoded({ extended: true })); // <-- Permite manejar a express url complejas
 app.use(express.static(__dirname + '/public')); // <-- Archivos estáticos de la carpeta public
 app.use(express.json()); // <-- Para que express pueda leer los archivos JSON
@@ -29,6 +30,9 @@ app.use('/api/products', routerProd);
 app.use('/api/carts', routerCart);
 app.use('/api/views', routerViews);
 
-server.listen(PORT, () => console.log(`Serve OK - ${PORT}`));
-
-socketProd(io)
+server.listen(PORT, () => {
+	console.log(`Serve OK - ${PORT}`)
+	dbm.connect()
+	socketProd(io)
+	socketChat(io)
+});

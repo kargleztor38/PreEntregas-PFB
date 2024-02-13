@@ -1,23 +1,26 @@
-<div class="formContainer">
-	<h2>Agregar y eliminar productos</h2>
-	<form id="form" class="form">
-		<input type="text" name="title" id="titleId" placeholder="Title">
-		<input type="text" name="description" id="descriptionId" placeholder="Description">
-		<input type="text" name="img" id="imgId" placeholder="Image">
-		<input type="text" name="code" id="codeId" placeholder="Code">
-		<input type="number" name="stock" id="stockId" placeholder="Stock">
-		<input type="number" name="price" id="priceId" placeholder="Price">
-		<input type="text" name="category" id="categoryId" placeholder="Category">
-		<input type="text" name="status" id="statusId" placeholder="Status">
-		<input type="submit" value="Enviar">
-		<input type="text" name="status" id="prodId" placeholder="Eliminar por el ID">
-		<input type="button" value="Eliminar" id="deleteId">
-	</form>
+<div class="realTimeContainer">
+	<div class="formContainer">
+		<h2>Agregar y eliminar productos</h2>
+		<form id="form" class="form">
+			<input class="inputRealTime" type="text" name="title" id="titleId" placeholder="Title">
+			<input class="inputRealTime" type="text" name="description" id="descriptionId" placeholder="Description">
+			<input class="inputRealTime" type="text" name="img" id="imgId" placeholder="Image">
+			<input class="inputRealTime" type="text" name="code" id="codeId" placeholder="Code">
+			<input class="inputRealTime" type="number" name="stock" id="stockId" placeholder="Stock">
+			<input class="inputRealTime" type="number" name="price" id="priceId" placeholder="Price">
+			<input class="inputRealTime" type="text" name="category" id="categoryId" placeholder="Category">
+			<input class="inputRealTime" type="text" name="status" id="statusId" placeholder="Status">
+			<input class="inputRealTime" type="submit" value="Enviar">
+			<input class="inputRealTime" type="text" name="status" id="prodId" placeholder="Eliminar por el ID">
+			<input class="inputRealTime" type="button" value="Eliminar" id="deleteId">
+		</form>
+	</div>
+
+	<div class="prod" id="listProd">
+
+	</div>
 </div>
 
-<div class="prod" id="listProd">
-
-</div>
 
 <script src="/socket.io/socket.io.js"></script>
 <script src="/js/realtime.js"></script>

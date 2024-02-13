@@ -1,36 +1,57 @@
 import { Router } from 'express'
-import ProductManager from '../controllers/productsManager.js'
-const myProducts = new ProductManager()
+import productsDb from '../Dao/db/manager/prodMongoManager.js';
 
-const routerProd = new Router() 
+const Pdb = new productsDb();
+const routerProd = new Router();
 
 routerProd.get('/', async (req, res) => {
-	const { limit } = req.query
-	let myProd = await myProducts.getProduct()
-	const arrSection = myProd.slice(0, limit)
-	res.send(limit < 0 || limit > 4 || limit == '' ? myProd : arrSection)
+	try {
+		const { limit } = req.query
+		let myProd = await Pdb.getProduct(limit);
+		res.send(myProd)
+	} catch (error) {
+		console.log(error);
+	}
 })
 
 routerProd.get('/:pid', async (req, res) => {
-	const { pid } = req.params
-	let myProdFind = await myProducts.getProductById(pid);
-	res.send(myProdFind)
+	try {
+		const { pid } = req.params
+		let myProdFind = await Pdb.getProductById(pid);
+		res.send(myProdFind)
+	} catch (error) {
+		console.log(error)
+	}
 })
 
 routerProd.post('/', async (req, res) => {
-	const prodAdd = await myProducts.addProduct(req.body)
-	res.send(prodAdd)
+	try {
+		const prodAdd = await Pdb.addProduct(req.body)
+		res.send(prodAdd)
+	} catch (error) {
+		console.log(error)
+	}
 })
 
 routerProd.put('/:id', async (req, res) => {
-	const prodAdd = await myProducts.updateProductById(req.params, req.body)
-	res.send(prodAdd)
+	try {
+		const { id } = req.params
+		const prodAdd = await Pdb.updateProductById(id, req.body)
+		res.send(prodAdd)
+	} catch (error) {
+		console.log(error)
+	}
+	
 })
 
 routerProd.delete('/:id', async (req, res) => {
-	const { id } = req.params
-	myProducts.deleteProductById(id)
-	res.send('Producto eliminado')
+	try {
+		const { id } = req.params
+		const remove = Pdb.deleteOneById(id)
+		res.send(remove)
+	} catch (error) {
+		console.log(error)
+	}
 })
 
 export default routerProd;

@@ -1,29 +1,31 @@
-<h1>Mostrando los productos</h1>
-<div class="prod">
-	{{#each products}}
-		<div class="card">
-			<div class="image">
-				<img>{{this.img}}</img>
-			</div>
-			<div class="content">
-				<span class="title">
-					Titulo: {{this.title}}
-				</span>
-				<p class="desc">
-					Descripción: {{this.description}}
-				</p>
-				<p class="desc">Codigo: {{this.code}}</p>
-				<p class="desc">Stock: {{this.stock}}</p>
-				<p class="desc">Precio: {{this.price}}</p>
-				<p class="desc">Categoría: {{this.category}}</p>
-				<p class="desc">Estado: {{this.status}}</p>
-				<button class="action">
-					Eliminar
-					<span aria-hidden="true">
-						→
+<div class="containerHome">
+	<h1>Mostrando los productos</h1>
+	<div class="prod">
+		{{#each products}}
+			<div class="card">
+				<div class="image">
+					<img>{{this.img}}</img>
+				</div>
+				<div class="content">
+					<span class="title">
+						Titulo: {{this.title}}
 					</span>
-				</button>
+					<p class="desc">
+						Descripción: {{this.description}}
+					</p>
+					<p class="desc">Codigo: {{this.code}}</p>
+					<p class="desc">Stock: {{this.stock}}</p>
+					<p class="desc">Precio: {{this.price}}</p>
+					<p class="desc">Categoría: {{this.category}}</p>
+					<p class="desc">Estado: {{this.status}}</p>
+					<button class="action">
+						Eliminar
+						<span aria-hidden="true">
+							→
+						</span>
+					</button>
+				</div>
 			</div>
-		</div>
-	{{/each}}
+		{{/each}}
+	</div>
 </div>

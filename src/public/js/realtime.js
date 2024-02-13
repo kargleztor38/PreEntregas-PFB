@@ -27,14 +27,16 @@ const productList = (prod) => {
 				<p class="desc">Precio: ${ p.price }</p>
 				<p class="desc">Categoría: ${ p.category }</p>
 				<p class="desc">Estado: ${ p.status }</p>
-				<p class="desc">ID: ${ p.id }</p>
-				<button type='button' class='action delete-btn' id='eliminar'>Eliminar</button>
+				<p class="desc">ID: ${ p._id }</p>
+				<button type='button' class='action delete-btn' id='eliminar'>
+					Eliminar
+				</button>
 			</div>`
 
-		const deleteButton = card.querySelector('.delete-btn');
+		const deleteButton = card.querySelector('#eliminar');
 
 		deleteButton.addEventListener('click', () => {
-			deleteProd(p.id)
+			deleteProd(p._id)
 		});
 
 		productsContainer.appendChild(card);
