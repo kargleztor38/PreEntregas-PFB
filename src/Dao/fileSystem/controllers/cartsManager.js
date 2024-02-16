@@ -1,5 +1,5 @@
 import { promises as fs } from 'fs';
-import uuid4 from 'uuid4';
+import { nanoid } from 'nanoid';
 
 class CartManager {
 	constructor() {
@@ -20,7 +20,7 @@ class CartManager {
 	}
 
 	createNewCart = async () => {
-		const id = uuid4()
+		const id = nanoid()
 		const newCart = { id, products: [] }
 
 		this.carts = await this.getCart()

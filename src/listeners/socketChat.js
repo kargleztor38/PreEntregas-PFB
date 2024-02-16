@@ -3,7 +3,7 @@ const messageMg = new messagesManager();
 
 const socketChat = (serverChat) => {
 	serverChat.on('connection', async (socket) => {
-		console.log('Chat connected')
+		console.log('Server chat connected')
 
 		socket.on('mensaje', async (info) => {
 			await messageMg.createMessage(info);

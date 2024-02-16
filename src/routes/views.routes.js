@@ -1,6 +1,7 @@
 import { Router } from 'express';
 import productsDb from '../Dao/db/manager/prodMongoManager.js';
 
+
 const viewsDB = new productsDb();
 const viewsRouter = new Router();
 
