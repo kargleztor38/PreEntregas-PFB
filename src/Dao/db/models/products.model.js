@@ -1,4 +1,6 @@
 import mongoose from "mongoose";
+import mongoPaginate from "mongoose-paginate-v2";
+
 const { Schema } = mongoose;
 
 const prodSchema = new Schema({
@@ -30,7 +32,7 @@ const prodSchema = new Schema({
     category: {
 		type: String,
 		required: true,
-		enum: ['Música', 'Electrodoméstico', 'Tecnología', 'Calzados']
+		enum: ['Música', 'Electrodomésticos', 'Tecnología', 'Calzado']
 	},
     status: {
 		type: Boolean,
@@ -38,6 +40,8 @@ const prodSchema = new Schema({
 	}
 });
 
-const modelPro = new mongoose.model('products', prodSchema);
+prodSchema.plugin( mongoPaginate )
 
-export default modelPro;
+const ProductSchema = new mongoose.model('products', prodSchema);
+
+export default ProductSchema;

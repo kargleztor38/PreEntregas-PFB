@@ -1,13 +1,49 @@
 import modelPro from '../models/products.model.js';
 
 class productsDb {
-
-	getProduct = async ( limit ) => {
+	getProduct = async ( limit, page, query, available, sort ) => {
 		try {
-			const resp = await modelPro.find().limit(limit).lean();
-			return resp;
-		} catch (error) {
-			return error
+			const offset = (page - 1) * limit
+			const resp = await modelPro.aggregate([
+				{ 
+					$match: {
+						$or: [
+							{ category: query },
+							{ stock: { $gte: available } }
+						]
+					}
+				},
+				{
+					$facet: {
+						metaDate: [
+							{
+								$count: 'totalDocument'
+							},
+							{
+								$addFields: {
+									pageNumber: page,
+									totalPages: { $ceil: { $divide: [ '$totalDocument', limit ] } }
+								}
+							}
+						],
+						data: [
+							{
+								$sort: { price: sort }
+							},
+							{
+								$skip: offset
+							},
+							{
+								$limit: limit
+							}
+						]
+					}
+				}
+				
+			])	
+			return resp
+		} catch (error) { 
+			return ( console.log(error), error )
 		}
 	};
 
@@ -20,6 +56,15 @@ class productsDb {
 			return error
 		};
 	};
+
+	addManyProducts = async ( obj ) => {
+		try {
+			await modelPro.insertMany( obj )
+			return 'Productos agregados correctamente'
+		} catch (error) {
+			return error
+		}
+	}
 
 	getProductById = async (id) => {
 		try {
