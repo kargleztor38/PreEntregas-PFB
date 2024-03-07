@@ -2,21 +2,26 @@ import mongoose from 'mongoose';
 const { Schema } = mongoose;
 
 const cartsModel = new Schema({
-	name: {
+	user: {
 		type: String,
 		required: true
 	},
-	product: {
+	products: {
 		type: [
-			{ 
-				quantity: { 
-					type: Number,
-					default: 1
+			{
+				product: {
+					type: Schema.Types.ObjectId,
+					ref: 'products'
 				}
 			}
-		]
+		],
+		default: []
 	}
 })
+
+cartsModel.pre( 'findOne', function () {
+	this.populate('products.product')
+} )
 
 const collCarts = mongoose.model('carts', cartsModel);
 export default collCarts;

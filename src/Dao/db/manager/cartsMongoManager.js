@@ -1,9 +1,9 @@
-import collCarts from "../models/carts.model.js";
+import cartsModel from "../models/carts.model.js";
 
 class handleCart {
 	getCarts = async () => {
 		try {
-			const allCarts = await collCarts.find()
+			const allCarts = await cartsModel.find()
 			return allCarts;
 		} catch (error) {
 			console.log(error)
@@ -12,7 +12,7 @@ class handleCart {
 
 	getCartById = async ( id ) => {
 		try {
-			const carts = await collCarts.findById( id )
+			const carts = await cartsModel.findOne({ _id: id })
 			return carts;
 		} catch (error) {
 			return error
@@ -21,23 +21,28 @@ class handleCart {
 
 	createNewCart = async (prod) => {
 		try {
-			await collCarts.create(prod)
+			await cartsModel.create(prod)
 		} catch (error) {
 			return error
 		}
 	}
 
-	addProductCart = async ( idc, newProducto ) => {
+	addProductCart = async ( idc, ref ) => {
 		try {
-			await collCarts.findByIdAndUpdate( idc, { $push: { product: newProducto } }, { new: true } )
+			const respCart = await cartsModel.findOne({ _id: idc })
+			respCart.products.push({ product: ref })
+			await cartsModel.updateOne( { _id: idc }, respCart )
+			
+			const resp = await this.getCartById({ _id: idc })
+			return resp
 		} catch (error) {
 			console.log(error)
 		}
 	}
 
-	deleteCartById = async ( id ) => {
+	deleteCartById = async ( id, producId ) => {
 		try {
-			await collCarts.findByIdAndDelete( id )
+			await cartsModel.findByIdAndDelete( id )
 		} catch (error) {
 			console.log(error);
 		}

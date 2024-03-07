@@ -6,13 +6,9 @@ const routerProd = new Router();
 
 routerProd.get('/', async (req, res) => {
 	try {
-		const { query } = req.query;
-		const limit = parseInt(req.query.limit, 10) || 10;
-		const page = parseInt(req.query.page, 10) || 1;
-		const available = parseInt(req.query.available, 10);
-		const sort = parseInt(req.query.sort, 10);
-
-		let myProd = await Product.getProduct( limit, page, query, available, sort );
+		const { limit = 5, page = 1, sort, query } = req.query;
+		
+		let myProd = await Product.getProduct( limit, page, query, sort );
 		res.send(myProd)
 	} catch (error) {
 		console.log(error);

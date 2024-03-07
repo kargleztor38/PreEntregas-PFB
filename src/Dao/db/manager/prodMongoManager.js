@@ -1,46 +1,30 @@
 import modelPro from '../models/products.model.js';
 
 class productsDb {
-	getProduct = async ( limit, page, query, available, sort ) => {
+	getProduct = async ( limit, page, query, sort ) => {
 		try {
-			const offset = (page - 1) * limit
-			const resp = await modelPro.aggregate([
-				{ 
-					$match: {
-						$or: [
-							{ category: query },
-							{ stock: { $gte: available } }
-						]
-					}
-				},
-				{
-					$facet: {
-						metaDate: [
-							{
-								$count: 'totalDocument'
-							},
-							{
-								$addFields: {
-									pageNumber: page,
-									totalPages: { $ceil: { $divide: [ '$totalDocument', limit ] } }
-								}
-							}
-						],
-						data: [
-							{
-								$sort: { price: sort }
-							},
-							{
-								$skip: offset
-							},
-							{
-								$limit: limit
-							}
-						]
-					}
-				}
-				
-			])	
+			const obj = {}
+			switch ( query ) {
+				case 'Música':
+				case 'Electrodomésticos':	
+				case 'Tecnología':		
+				case 'Calzado':
+					obj.category = query
+					break;
+				case 'disponible':
+					obj.stock = { $gte: 25 } 
+					break;
+				default:
+					break;
+			}
+
+			const options = {
+				page: parseInt(page, 10),
+				limit: parseInt(limit, 10),
+				sort: sort ? { price: sort === 'asc' ? 1 : -1 } : {},
+			}
+			
+			const resp = await modelPro.paginate( obj, options )	
 			return resp
 		} catch (error) { 
 			return ( console.log(error), error )

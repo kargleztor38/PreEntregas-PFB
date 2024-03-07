@@ -35,9 +35,12 @@ routerCart.post('/', async ( req, res ) => {
 
 routerCart.put('/:id', async ( req, res ) => {
 	try {
-		const { id } = req.params;
-		await carts.addProductCart(id, req.body)
-		res.send('Producto agregado')
+		const{ id }= req.params;
+		const { ref } = req.query;
+		
+		const resp = await carts.addProductCart(id, ref)
+		console.log(resp);
+		res.send(resp)
 	} catch (error) {
 		console.log(error);
 	}
