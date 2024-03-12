@@ -14,7 +14,7 @@ import socketChat from './listeners/socketChat.js';
 const app = express();
 const server = createServer(app); // <-- Creando un servidor http con express de argumento necesario para socket.io
 const io = new Server(server);
-const PORT = 8080;
+const PORT = process.env.PORT || 8080;
 
 // Codigo necesarios para el correcto funcionamiento de express
 app.use(express.urlencoded({ extended: true })); // <-- Permite manejar a express url complejas

@@ -3,6 +3,7 @@ import modelPro from '../models/products.model.js';
 class productsDb {
 	getProduct = async ( limit, page, query, sort ) => {
 		try {
+			
 			const obj = {}
 			switch ( query ) {
 				case 'Música':
@@ -12,7 +13,7 @@ class productsDb {
 					obj.category = query
 					break;
 				case 'disponible':
-					obj.stock = { $gte: 25 } 
+					obj.stock = { $gte: 1 } 
 					break;
 				default:
 					break;
@@ -24,8 +25,24 @@ class productsDb {
 				sort: sort ? { price: sort === 'asc' ? 1 : -1 } : {},
 			}
 			
-			const resp = await modelPro.paginate( obj, options )	
-			return resp
+			const resp = await modelPro.paginate( obj, options )
+			
+			const prev = resp.hasPrevPage === false ? null : page - 1
+			const next = resp.hasNextPage === false ? null : page + 1
+
+			const objInfo = {}
+			objInfo.payload = resp.docs
+			objInfo.totalPages = resp.totalPages
+			objInfo.prevPage = prev
+			objInfo.nextPage = next
+			objInfo.page = resp.page
+			objInfo.hasPrevPage = resp.hasPrevPage
+			objInfo.hasNextPage = resp.hasNextPage
+			objInfo.nextLink = `localhost:8080/api/products?page=${next}&limit=${limit}`
+			objInfo.prevLink = `localhost:8080/api/products?page=${prev}&limit=${limit}`
+
+			return objInfo
+
 		} catch (error) { 
 			return ( console.log(error), error )
 		}

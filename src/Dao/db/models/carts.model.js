@@ -12,6 +12,10 @@ const cartsModel = new Schema({
 				product: {
 					type: Schema.Types.ObjectId,
 					ref: 'products'
+				},
+				quantity: {
+					type: Number,
+					default: 1
 				}
 			}
 		],
@@ -19,5 +23,5 @@ const cartsModel = new Schema({
 	}
 })
 
-const collCarts = mongoose.model('carts', cartsModel);
-export default collCarts;
+const Carts = mongoose.model('carts', cartsModel);
+export default Carts;

@@ -6,7 +6,9 @@ const routerProd = new Router();
 
 routerProd.get('/', async (req, res) => {
 	try {
-		const { limit = 5, page = 1, sort, query } = req.query;
+		const { sort, query } = req.query;
+		const page = parseInt(req.query.page, 10) || 1
+		const limit = parseInt(req.query.limit, 10) || 5
 		
 		let myProd = await Product.getProduct( limit, page, query, sort );
 		res.send(myProd)
