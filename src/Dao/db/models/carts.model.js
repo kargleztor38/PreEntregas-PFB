@@ -19,9 +19,5 @@ const cartsModel = new Schema({
 	}
 })
 
-cartsModel.pre( 'findOne', function () {
-	this.populate('products.product')
-} )
-
 const collCarts = mongoose.model('carts', cartsModel);
 export default collCarts;
