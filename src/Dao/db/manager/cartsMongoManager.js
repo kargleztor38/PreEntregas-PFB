@@ -75,10 +75,6 @@ class handleCart {
 
 	deleteProductCart = async ( cid, pid ) => {
 		try {
-			const getCart = await Carts.findById( cid )
-			const exist = getCart.products.findIndex(pord => pord.product._id == pid)
-
-			if ( exist !== -1 ) {
 				const carrito = await Carts.findOneAndUpdate(
 					{ _id: cid },
 					{ $pull: { products: { product: pid } } },
@@ -96,7 +92,6 @@ class handleCart {
 	delelteProductsCart = async ( cid ) => {
 		const query = { _id: cid }
 		const update = { $set: { products: [] } }
-		const options = { new: true }
 		try {
 			const up = await Carts.findByIdAndUpdate(
 				query,
@@ -109,6 +104,5 @@ class handleCart {
 		}
 	}
 }
-
 
 export default handleCart;
