@@ -23,5 +23,9 @@ const cartsModel = new Schema({
 	}
 })
 
+cartsModel.pre('find', function() {
+	this.populate('products.product')
+})
+
 const Carts = mongoose.model('carts', cartsModel);
 export default Carts;

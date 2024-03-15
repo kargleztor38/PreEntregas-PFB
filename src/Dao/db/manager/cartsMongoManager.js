@@ -3,40 +3,27 @@ import Carts from "../models/carts.model.js";
 class handleCart {
 	getCarts = async () => {
 		try {
-			const allCarts = await Carts.find().populate('products.product')
+			const allCarts = await Carts.find()
 			return allCarts;
-		} catch (error) {
-			console.log(error)
+		} catch (err) {
+			console.log(err)
 		}
 	}
 
 	getCartById = async ( id ) => {
 		try {
-			const carts = await Carts.findOne({ _id: id }).populate('products.product')
+			const carts = await Carts.findById(id).populate('products.product')
 			return carts;
-		} catch (error) {
-			return error
+		} catch (err) {
+			return err
 		}
 	}
 
 	createNewCart = async (prod) => {
 		try {
 			await Carts.create(prod)
-		} catch (error) {
-			return error
-		}
-	}
-
-	addProductCart = async ( idc, idp ) => {
-		try {
-			const respCart = await Carts.findOne({ _id: idc })
-			respCart.products.push({ product: idp })
-			await Carts.updateOne( { _id: idc }, respCart )
-			
-			const resp = await this.getCartById({ _id: idc })
-			return resp
-		} catch (error) {
-			console.log(error)
+		} catch (err) {
+			return err
 		}
 	}
 
@@ -53,8 +40,29 @@ class handleCart {
 			} else {
 				return false
 			}
-		} catch (error) {
-			console.log(error)
+		} catch (err) {
+			console.log(err)
+		}
+	}
+
+	addProductCart = async ( idc, idp ) => {
+		try {
+			const validate = await Carts.findById(idc).populate('products.product')
+			const findIndex = validate.products.findIndex(prod => prod.product._id == idp)
+			
+			if ( findIndex !== -1 ) {
+				const sum = validate.products[findIndex].quantity + 1
+				validate.products[findIndex].quantity = sum
+				await validate.save()
+				return 'Se aumento la cantidad del producto en 1'
+			} else {
+				const res1 = await Carts.findOne({ _id: idc })
+				res1.products.push({ product: idp })
+				await Carts.updateOne({ _id: idc }, res1)
+				return 'Producto agregado'
+			}
+		} catch (err) {
+			console.log(err)
 		}
 	}
 
@@ -68,39 +76,36 @@ class handleCart {
 				await cart.save()
 				return true
 			}
-		} catch (error) {
-			console.log(error)
+		} catch (err) {
+			console.log(err)
 		}
 	}
 
-	deleteProductCart = async ( cid, pid ) => {
+	deleteOneProduct = async ( cid, pid ) => {
+		const update = { products: { product: pid } }
 		try {
-				const carrito = await Carts.findOneAndUpdate(
-					{ _id: cid },
-					{ $pull: { products: { product: pid } } },
-					{ next: true }
-				)
-				return carrito
-			} else {
-				return 'Producto no encontrado'
-			}
-		} catch (error) {
-			console.log(error);
+			const carrito = await Carts.findOneAndUpdate(
+				{ _id: cid },
+				{ $pull: update },
+			).exists( update )
+
+			return carrito
+		} catch (err) {
+			console.log(err);
 		}
 	}
 
-	delelteProductsCart = async ( cid ) => {
+	delelteAllProducts = async ( cid ) => {
 		const query = { _id: cid }
 		const update = { $set: { products: [] } }
 		try {
 			const up = await Carts.findByIdAndUpdate(
 				query,
-				update, 
-				options
+				update
 			)
-			return up
-		} catch (error) {
-			console.log(error)
+			return up ? true : false
+		} catch (err) {
+			console.log(err)
 		}
 	}
 }

@@ -25,12 +25,15 @@ class productsDb {
 				sort: sort ? { price: sort === 'asc' ? 1 : -1 } : {},
 			}
 			
-			const resp = await modelPro.paginate( obj, options )
+			const resp = await modelPro.paginate( obj, options, (err, result) => {
+				return err ? 'error' : result
+			})
 			
 			const prev = resp.hasPrevPage === false ? null : page - 1
 			const next = resp.hasNextPage === false ? null : page + 1
 
 			const objInfo = {}
+			objInfo.status = resp !== 'error' ? 'Success' : 'Error'
 			objInfo.payload = resp.docs
 			objInfo.totalPages = resp.totalPages
 			objInfo.prevPage = prev
@@ -44,7 +47,7 @@ class productsDb {
 			return objInfo
 
 		} catch (error) { 
-			return ( console.log(error), error )
+			return  error
 		}
 	};
 

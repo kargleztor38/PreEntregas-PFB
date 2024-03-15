@@ -1,0 +1,13 @@
+<h1>Visualizar productos</h1>
+{{#with products}}
+    <p>Status: {{status}}</p>
+    <div>
+        Productos: 
+            {{#each payload}}
+                <p>ID: {{_id}}</p>
+                <h4>Titulo: {{title}}</h4>
+                <img src={{img}} alt="imagen">
+            {{/each}}
+
+    </div>
+{{/with}}
