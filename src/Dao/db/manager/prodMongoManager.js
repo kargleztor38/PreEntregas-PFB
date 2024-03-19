@@ -3,7 +3,6 @@ import modelPro from '../models/products.model.js';
 class productsDb {
 	getProduct = async ( limit, page, query, sort ) => {
 		try {
-			
 			const obj = {}
 			switch ( query ) {
 				case 'Música':
