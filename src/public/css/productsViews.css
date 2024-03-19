@@ -1,0 +1,26 @@
+.paginate-constent {
+    width: 84%;
+    margin: 50px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 4rem;
+
+    & .constent {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-basis: 15%;
+        text-align: center;
+        gap: 1rem;
+
+        & .move {
+            width: 20%;
+            text-decoration: none;
+            font-size: 2.5rem;
+            color: black;
+        }
+
+    }
+}
+

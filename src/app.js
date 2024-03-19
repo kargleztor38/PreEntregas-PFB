@@ -35,4 +35,4 @@ server.listen(PORT, () => {
 	dbm.connect()
 	socketProd(io)
 	socketChat(io)
-});
+})

@@ -40,8 +40,8 @@ class productsDb {
 			objInfo.page = resp.page
 			objInfo.hasPrevPage = resp.hasPrevPage
 			objInfo.hasNextPage = resp.hasNextPage
-			objInfo.nextLink = `localhost:8080/api/products?page=${next}&limit=${limit}`
-			objInfo.prevLink = `localhost:8080/api/products?page=${prev}&limit=${limit}`
+			objInfo.prevLink = `products?page=${prev}&limit=${limit}`
+			objInfo.nextLink = `products?page=${next}&limit=${limit}`
 
 			return objInfo
 

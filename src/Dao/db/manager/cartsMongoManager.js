@@ -12,7 +12,7 @@ class handleCart {
 
 	getCartById = async ( id ) => {
 		try {
-			const carts = await Carts.findById(id).populate('products.product')
+			const carts = await Carts.findById(id).lean()
 			return carts;
 		} catch (err) {
 			return err

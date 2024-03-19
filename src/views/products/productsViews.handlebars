@@ -1,12 +1,46 @@
-<h1>Visualizar productos</h1>
-{{#with products}}
-    <p>Status: {{status}}</p>
-    <div>
-        Productos: 
-            {{#each payload}}
-                <p>ID: {{_id}}</p>
-                <h4>Titulo: {{title}}</h4>
-                <img src={{img}} alt="imagen">
-            {{/each}}
-
-    </div>
+<div class="containerHome">
+	<h1 class="tag_h1">Productos</h1>
+    
+	<div class="prod">
+		{{#each paginate.payload}}
+			<div class="card">
+				<div class="image">
+					<img>{{this.img}}</img>
+				</div>
+				<div class="content">
+					<span class="title">
+						Titulo: {{this.title}}
+					</span>
+					<p class="desc">
+						Descripción: {{this.description}}
+					</p>
+					<p class="desc">Codigo: {{this.code}}</p>
+					<p class="desc">Stock: {{this.stock}}</p>
+					<p class="desc">Precio: {{this.price}}</p>
+					<p class="desc">Categoría: {{this.category}}</p>
+					<p class="desc">Estado: {{this.status}}</p>
+					<button class="action">
+						Agrgar al carrito
+						<span aria-hidden="true">
+							→
+						</span>
+					</button>
+				</div>
+			</div>
+		{{/each}}
+	</div>
+	<div class="paginate-constent">
+		<div class="constent">
+			<a href="{{paginate.prevlink}}" class="move"> « </a>
+			<p>Anterior: {{paginate.prevPage}}</p>
+		</div>
+		<div>
+			<p>Pagina actual: {{paginate.page}}</p>
+			<p>Total de paginas: {{paginate.totalPages}}</p>
+		</div>
+		<div class="constent">
+			<p>Siguiente: {{paginate.nextPage}}</p>
+			<a href="{{paginate.nextlink}}" class="move"> » </a>
+		</div>
+	</div>
+</div>

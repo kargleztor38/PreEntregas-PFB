@@ -14,24 +14,24 @@ const productList = (prod) => {
 		card.className = 'card';
 
 		card.innerHTML = `
-			<div class="image">${ p.img }</div>
-			<div class="content">
-				<span class="title">
-					Titulo: ${ p.title }
-				</span>
-				<p class="desc">
-					Descripción: ${ p.description }
-				</p>
-				<p class="desc">Codigo: ${ p.code }</p>
-				<p class="desc">Stock: ${ p.stock }</p>
-				<p class="desc">Precio: ${ p.price }</p>
-				<p class="desc">Categoría: ${ p.category }</p>
-				<p class="desc">Estado: ${ p.status }</p>
-				<p class="desc">ID: ${ p._id }</p>
-				<button type='button' class='action delete-btn' id='eliminar'>
-					Eliminar
-				</button>
-			</div>`
+		<div class="image">${ p.img }</div>
+		<div class="content">
+			<span class="title">
+				Titulo: ${ p.title }
+			</span>
+			<p class="desc">
+				Descripción: ${ p.description }
+			</p>
+			<p class="desc">Codigo: ${ p.code }</p>
+			<p class="desc">Stock: ${ p.stock }</p>
+			<p class="desc">Precio: ${ p.price }</p>
+			<p class="desc">Categoría: ${ p.category }</p>
+			<p class="desc">Estado: ${ p.status }</p>
+			<p class="desc">ID: ${ p._id }</p>
+			<button type='button' class='action delete-btn' id='eliminar'>
+				Eliminar
+			</button>
+		</div>`
 
 		const deleteButton = card.querySelector('#eliminar');
 

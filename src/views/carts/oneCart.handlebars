@@ -1,1 +1,16 @@
-<h1>Vista del carrito seleccionado</h1>
+<div class="container-cart">
+    <h1 >Vista del carrito seleccionado</h1>
+    <div class="header">
+        <p class="products-id">Cart ID: {{carts._id}}</p>
+        <p class="username">Uesuario: {{carts.user}}</p>
+    </div>
+    <h3 class="titel-cart">Productos del carrito</h3>
+    <div class="container">
+        {{#each carts.products}}
+            <div class="cart-products">
+                <p class="desc">ID: {{product}}</p>
+                <p class="desc">Cantidad: {{quantity}}</p>
+            </div>
+        {{/each}}
+    </div>
+</div>
