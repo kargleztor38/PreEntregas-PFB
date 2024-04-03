@@ -1,16 +1,26 @@
-import { Router } from 'express';
-import productsDb from '../Dao/db/manager/prodMongoManager.js'
-import handleCart from '../Dao/db/manager/cartsMongoManager.js';
+import { Router } from "express";
+import {
+    displayProducts,
+    productsCarts,
+    productsPaginete,
+    viewChat,
+    viewError,
+    viewRealTimeProducts,
+    viewlogin,
+    viewPl,
+    viewPjwt,
+} from "../controllers/views.constrollers.js";
 
 const viewsRouter = new Router();
 
-viewsRouter.get('/', async (req, res) => {
-	const { limit = 5, page = 1, sort, query } = req.query;
-	const allProducts = await productsV.getProduct(limit, page, query, sort)
-	
-	res.render('home', { title: 'Express HandleBars end WebSocket', products: allProducts })
-})
+viewsRouter.get("/", displayProducts);
+viewsRouter.get("/realtimeproducts", viewRealTimeProducts);
+viewsRouter.get("/chat", viewChat);
+viewsRouter.get("/products", productsPaginete);
+viewsRouter.get("/carts/:cid", productsCarts);
+viewsRouter.get("/formlocal", viewPl);
+viewsRouter.get("/formjwt", viewPjwt);
+viewsRouter.get("/viewlogin", viewlogin);
+viewsRouter.get("/error", viewError);
 
-viewsRouter.get('/realtimeproducts', async (req, res) => {
-	res.render('realTimeProducts')
-})
+export default viewsRouter;

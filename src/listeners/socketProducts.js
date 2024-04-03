@@ -1,4 +1,4 @@
-import productsDb from "../Dao/db/manager/prodMongoManager.js";
+import productsDb from "../services/prod.services.js";
 const mdb = new productsDb()
 
 const socketProd = (socketServer) => {

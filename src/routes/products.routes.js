@@ -1,68 +1,20 @@
-import { Router } from 'express'
-import ProductSchema from '../Dao/db/manager/prodMongoManager.js';
+import { Router } from "express";
+import {
+    addMenyPoruducts,
+    addProduct,
+    deleteOneById,
+    getProductById,
+    getProducts,
+    updateProductById,
+} from "../controllers/products.controllers.js";
 
-const Product = new ProductSchema();
 const routerProd = new Router();
 
-routerProd.get('/', async (req, res) => {
-	try {
-		const { sort, query } = req.query;
-		const page = parseInt(req.query.page, 10) || 1
-		const limit = parseInt(req.query.limit, 10) || 5
-		
-		let myProd = await Product.getProduct( limit, page, query, sort );
-		res.send(myProd)
-	} catch (error) {
-		console.log(error);
-	}
-})
-
-routerProd.get('/:pid', async (req, res) => {
-	try {
-		const { pid } = req.params
-		let myProdFind = await Product.getProductById(pid);
-		res.send(myProdFind)
-	} catch (error) {
-		console.log(error)
-	}
-})
-
-routerProd.post('/', async (req, res) => {
-	try {
-		const prodAdd = await Product.addProduct(req.body)
-		res.send(prodAdd)
-	} catch (error) {
-		console.log(error)
-	}
-})
-
-routerProd.post('/many', async ( req, res ) => {
-	try {
-		const all = await Product.addManyProducts( req.body )
-		res.send(all)
-	} catch (error) {
-		console.log(error)
-	}
-})
-
-routerProd.put('/:id', async (req, res) => {
-	try {
-		const { id } = req.params
-		const prodAdd = await Product.updateProductById(id, req.body)
-		res.send(prodAdd)
-	} catch (error) {
-		console.log(error)
-	}
-})
-
-routerProd.delete('/:id', async (req, res) => {
-	try {
-		const { id } = req.params
-		const remove = Product.deleteOneById(id)
-		res.send(remove)
-	} catch (error) {
-		console.log(error)
-	}
-})
+routerProd.get("/", getProducts);
+routerProd.get("/:pid", getProductById);
+routerProd.post("/", addProduct);
+routerProd.post("/many", addMenyPoruducts);
+routerProd.put("/:id", updateProductById);
+routerProd.delete("/:id", deleteOneById);
 
 export default routerProd;
