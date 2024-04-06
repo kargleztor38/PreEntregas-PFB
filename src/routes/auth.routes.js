@@ -22,7 +22,7 @@ routerAuth.get(
 
 routerAuth.post( "/login", login );
 
-routerAuth.get( '/current', viewUser )
+routerAuth.get( '/current', viewUser );
 
 routerAuth.get( "/logout", logout );
 

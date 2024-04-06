@@ -6,8 +6,12 @@ import __dirname from "./utils.js";
 import dbm from "./Dao/db/indexMongoose.js";
 import cookieParser from "cookie-parser"; // <-- Importando cookie-parser
 import passport from "passport";
-import { initPassportJwt, initPassportLocal, } from "./controllers/auth.controllers.js";
+import {
+    initPassportJwt,
+    initPassportLocal,
+} from "./controllers/auth.controllers.js";
 import session from "express-session";
+import 'dotenv/config'
 
 import indexRouter from "./routes/index.routes.js";
 import socketProd from "./listeners/socketProducts.js";
@@ -16,7 +20,7 @@ import socketChat from "./listeners/socketChat.js";
 const app = express();
 const server = createServer(app); // <-- Creando un servidor http con express de argumento necesario para socket.io
 const io = new Server(server);
-const PORT = process.env.PORT || 8080;
+const PORT = process.env.PORT;
 
 app.use(cookieParser()); // <-- Inicializand cookie-parser para poder acceder a sus metodos en la aplicacion
 
