@@ -11,7 +11,7 @@ export const displayProducts = async (req, res) => {
         products: allProducts,
     });
 };
-export const productsPaginete = async (req, res) => {
+export const productsPaginate = async (req, res) => {
     const { sort, query } = req.query;
     const page = parseInt(req.query.page, 10) || 1;
     const limit = parseInt(req.query.limit, 10) || 8;

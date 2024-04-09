@@ -2,7 +2,7 @@ import { Router } from "express";
 import {
     displayProducts,
     productsCarts,
-    productsPaginete,
+    productsPaginate,
     viewChat,
     viewError,
     viewRealTimeProducts,
@@ -16,7 +16,7 @@ const viewsRouter = new Router();
 viewsRouter.get("/", displayProducts);
 viewsRouter.get("/realtimeproducts", viewRealTimeProducts);
 viewsRouter.get("/chat", viewChat);
-viewsRouter.get("/products", productsPaginete);
+viewsRouter.get("/products", productsPaginate);
 viewsRouter.get("/carts/:cid", productsCarts);
 viewsRouter.get("/formlocal", viewPl);
 viewsRouter.get("/formjwt", viewPjwt);

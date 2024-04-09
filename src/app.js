@@ -22,9 +22,9 @@ const server = createServer(app); // <-- Creando un servidor http con express de
 const io = new Server(server);
 const PORT = process.env.PORT;
 
-app.use(cookieParser()); // <-- Inicializand cookie-parser para poder acceder a sus metodos en la aplicacion
+app.use(cookieParser()); // <-- Inicializando cookie-parser para poder acceder a sus método en la aplicación
 
-// Codigo necesarios para el correcto funcionamiento de express
+// Código necesarios para el correcto funcionamiento de express
 app.use(express.urlencoded({ extended: true })); // <-- Permite manejar a express url complejas
 app.use(express.static(__dirname + "/public")); // <-- Archivos estáticos de la carpeta public
 app.use(express.json()); // <-- Para que express pueda leer los archivos JSON
@@ -34,7 +34,7 @@ app.engine("handlebars", handlebars.engine()); // <-- Inicializando el motor de 
 app.set("view engine", "handlebars"); // <-- Para que el motor lea todos los archivos de la carpeta views
 app.set("views", __dirname + "/views"); // <-- Indicando la dirección de la carpeta views
 
-// Cnfigurandi la session
+// Configurando la session
 app.use(
     session({
         secret: "myApiBack",
@@ -43,7 +43,7 @@ app.use(
     })
 );
 
-// Configuracion de passport
+// Configuración de passport
 app.use(passport.initialize());
 initPassportLocal();
 initPassportJwt();

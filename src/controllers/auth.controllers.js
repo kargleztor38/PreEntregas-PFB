@@ -31,7 +31,7 @@ export const initPassportLocal = () => {
                     let userReady = await User.create(userNew);
                     done(null, userReady);
                 } catch (error) {
-                    done("Error al registrarce" + error);
+                    done("Error al registrarse" + error);
                 }
             }
         )
@@ -51,7 +51,7 @@ let cookieExtractor = (req) => {
     }
     return token;
 };
-// Estratrgia de registro con PASSPORT-JWT
+// Estrategia de registro con PASSPORT-JWT
 export const initPassportJwt = () => {
     passport.use(
         "jwt",
@@ -75,10 +75,11 @@ export const login = async (req, res) => {
     const { email, password } = req.body;
     try {
         const user = await User.findOne({ email });
+        console.log(user)
         if (!user) return res.status(400).json({ message: "Usuario no encontrado" });
 
         const isMatch = await passwordValidate(user, password);
-        if (!isMatch) return res.status(400).json({ message: "Error al iniciar sesion" });
+        if (!isMatch) return res.status(400).json({ message: "Error al iniciar sesión" });
 
         const token = await createToken({ id: user._id });
         res.cookie("cookieToken", token, { httpOnly: true }).json({
