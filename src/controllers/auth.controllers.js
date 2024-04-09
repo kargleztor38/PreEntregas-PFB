@@ -28,9 +28,6 @@ export const initPassportLocal = () => {
                         role: data.role,
                     };
 
-                    const token = await createToken({ id: user._id });
-                    res.cookie("cookieToken", token, { httpOnly: true });
-
                     let userReady = await User.create(userNew);
                     done(null, userReady);
                 } catch (error) {
