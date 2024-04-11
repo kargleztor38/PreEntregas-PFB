@@ -1,13 +1,8 @@
 import Jwt from "jsonwebtoken";
 
-export const createToken = (payload) => {
-    return new Promise(( resolve, reject ) => {
-        Jwt.sign(
-            payload,
-            'ecommerceSecret',
-            {
-                expiresIn: '20s'
-            }
-        )
-    })
-}
+export const createToken = (userId) => {
+    const token = Jwt.sign(userId, process.env.SECRET, {
+        expiresIn: "20h",
+    });
+    return token
+};

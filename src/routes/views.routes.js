@@ -18,9 +18,11 @@ viewsRouter.get("/realtimeproducts", viewRealTimeProducts);
 viewsRouter.get("/chat", viewChat);
 viewsRouter.get("/products", productsPaginate);
 viewsRouter.get("/carts/:cid", productsCarts);
-viewsRouter.get("/formlocal", viewPl);
-viewsRouter.get("/formjwt", viewPjwt);
-viewsRouter.get("/viewlogin", viewlogin);
-viewsRouter.get("/error", viewError);
+
+// Vistas de registro, login, perfil
+viewsRouter.get("/form-local", viewPl); // <-- REGISTRO CON PASSPORT-LOCAL
+viewsRouter.get("/form-jwt", viewPjwt); // <-- REGISTRO CON PASSPORT-JWT
+viewsRouter.get("/viewlogin", viewlogin); // <-- VISTA DE LOGIN
+viewsRouter.get("/error", viewError); // <-- VISTA DEL ERROR
 
 export default viewsRouter;

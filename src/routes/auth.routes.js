@@ -13,7 +13,7 @@ routerAuth.post(
 );
 
 routerAuth.get(
-    "/jwtegister",
+    "/jwtRegister",
     passport.authenticate("jwt", { session: false }),
     (req, res) => {
         res.render( "sessions/login" );
@@ -21,6 +21,8 @@ routerAuth.get(
 );
 
 routerAuth.post( "/login", login );
+
+// CREAR RUTA PARA MOSTRAR EL PERFIL DEL USUARIO
 
 routerAuth.get( '/current', viewUser );
 

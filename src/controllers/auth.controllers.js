@@ -79,13 +79,14 @@ export const login = async (req, res) => {
 
         const isMatch = await passwordValidate(user, password);
         if (!isMatch) return res.status(400).json({ message: "Error al iniciar sesión" });
-
-        const token = await createToken({ id: user._id });
+        
+        const token = createToken({ id: user._id });
+        console.log(token)
         res.cookie("cookieToken", token, { httpOnly: true }).json({
             name: user.firstName,
             lastName: user.lastName,
-            email: user.email,
-        });
+            email: user.email
+        })
     } catch (error) {
         console.log(error);
     }

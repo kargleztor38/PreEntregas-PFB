@@ -16,11 +16,12 @@ import 'dotenv/config'
 import indexRouter from "./routes/index.routes.js";
 import socketProd from "./listeners/socketProducts.js";
 import socketChat from "./listeners/socketChat.js";
+import MongoStore from "connect-mongo";
 
 const app = express();
 const server = createServer(app); // <-- Creando un servidor http con express de argumento necesario para socket.io
 const io = new Server(server);
-const PORT = process.env.PORT;
+const PORT = process.env.PORT || 8080;
 
 app.use(cookieParser()); // <-- Inicializando cookie-parser para poder acceder a sus método en la aplicación
 
@@ -37,7 +38,10 @@ app.set("views", __dirname + "/views"); // <-- Indicando la dirección de la car
 // Configurando la session
 app.use(
     session({
-        secret: "myApiBack",
+        store: MongoStore.create({
+            mongoUrl: process.env.URL_MONGO_CONNECT
+        }),
+        secret: process.env.SECRET,
         resave: true,
         saveUninitialized: true,
     })
