@@ -75,7 +75,6 @@ export const login = async (req, res) => {
     const { email, password } = req.body;
     try {
         const user = await User.findOne({ email });
-        console.log(user)
         if (!user) return res.status(400).json({ message: "Usuario no encontrado" });
 
         const isMatch = await passwordValidate(user, password);
