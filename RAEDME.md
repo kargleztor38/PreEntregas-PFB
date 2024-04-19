@@ -1,4 +1,4 @@
-# Ecommerce
+# Ecommerce backend
 ## Algunos paso para iniciar la app
 
 - 1 Ejecutar el script (npm star) para iniciar el servidor
