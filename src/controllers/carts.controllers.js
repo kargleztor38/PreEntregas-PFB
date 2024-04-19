@@ -21,8 +21,9 @@ export const getCartById = async (req, res) => {
 export const createNewCart = async (req, res) => {
     try {
         const product = req.body;
-        await carts.createNewCart(product);
-        res.send("Producto agregado correctamente");
+        const newCart = await carts.createNewCart(product);
+        return newCart
+        
     } catch (err) {
         res.send(err);
     }
@@ -52,7 +53,7 @@ export const updateQtyProdCart = async (req, res) => {
         console.log(err);
     }
 };
-export const updateMenyProductsCart = async (req, res) => {
+export const updateManyProductsCart = async (req, res) => {
     try {
         const { cid } = req.params;
         const arrayP = req.body;
@@ -80,7 +81,7 @@ export const deleteOneProduct = async (req, res) => {
         res.status(500).send("Problemas al realizar la operacion: " + err);
     }
 };
-export const delelteAllProducts = async (req, res) => {
+export const deleteAllProducts = async (req, res) => {
     try {
         const { cid } = req.params;
         const remove = await carts.delelteAllProducts(cid);

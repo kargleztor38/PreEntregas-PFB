@@ -2,11 +2,11 @@ import { Router } from "express";
 import {
     addProductCart,
     createNewCart,
-    delelteAllProducts,
+    deleteAllProducts,
     deleteOneProduct,
     getCartById,
     getCarts,
-    updateMenyProductsCart,
+    updateManyProductsCart,
     updateQtyProdCart,
 } from "../controllers/carts.controllers.js";
 
@@ -17,8 +17,8 @@ routerCart.get("/:id", getCartById);
 routerCart.post("/", createNewCart);
 routerCart.post("/:idc", addProductCart);
 routerCart.put("/:cid/product/:pid", updateQtyProdCart);
-routerCart.put("/:cid", updateMenyProductsCart);
+routerCart.put("/:cid", updateManyProductsCart);
 routerCart.delete("/:cid/product/:pid", deleteOneProduct);
-routerCart.delete("/:cid", delelteAllProducts);
+routerCart.delete("/:cid", deleteAllProducts);
 
 export default routerCart;

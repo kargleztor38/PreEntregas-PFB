@@ -2,10 +2,11 @@ import passport from "passport";
 import LocalStrategy from "passport-local";
 import JwtStrategy from "passport-jwt";
 import { ExtractJwt } from "passport-jwt";
-
 import User from "../models/user.model.js";
+
 import { createHash, passwordValidate } from "../libs/bcrypt.js";
 import { createToken } from "../libs/jwt.js";
+import Carts from "../models/carts.model.js";
 
 // Estrategia de registro con PASSPORT-LOCAL
 export const initPassportLocal = () => {
@@ -18,18 +19,23 @@ export const initPassportLocal = () => {
                     let data = req.body;
                     let findUser = await User.findOne({ email: username });
                     if (findUser) done("Usuario ya registrado");
+
+                    const newCart = new Carts({
+                        user: data.firstName
+                    })
+
                     let userNew = {
                         firstName: data.firstName,
                         lastName: data.lastName,
                         email: username,
                         age: data.age,
                         password: createHash(data.password),
-                        cart: data.cart,
+                        cart: newCart,
                         role: data.role,
                     };
 
                     let userReady = await User.create(userNew);
-                    done(null, userReady);
+                    done(null, userReady);                    
                 } catch (error) {
                     done("Error al registrarse" + error);
                 }
@@ -75,18 +81,21 @@ export const login = async (req, res) => {
     const { email, password } = req.body;
     try {
         const user = await User.findOne({ email });
-        if (!user) return res.status(400).json({ message: "Usuario no encontrado" });
+        if (!user) return res.status(400).render( 'viewsErrors/no-register' );
 
         const isMatch = await passwordValidate(user, password);
         if (!isMatch) return res.status(400).json({ message: "Error al iniciar sesión" });
         
+        const userObj = {}
+        userObj.firstName = user.firstName
+        userObj.lastName = user.lastName
+        userObj.email = user.email
+        userObj.age = user.age
+        userObj.cart = user.cart
+        userObj.role = user.role
+
         const token = createToken({ id: user._id });
-        console.log(token)
-        res.cookie("cookieToken", token, { httpOnly: true }).json({
-            name: user.firstName,
-            lastName: user.lastName,
-            email: user.email
-        })
+        res.cookie("cookieToken", token, { httpOnly: true }).render('sessions/profile', { usuario: userObj })
     } catch (error) {
         console.log(error);
     }

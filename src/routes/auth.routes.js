@@ -8,7 +8,7 @@ routerAuth.post(
     "/localregister",
     passport.authenticate("local", { failureRedirect: "error" }),
     (req, res) => {
-        res.render( "sessions/login" );
+        res.redirect("/api/views/viewlogin");
     }
 );
 
@@ -16,16 +16,16 @@ routerAuth.get(
     "/jwtRegister",
     passport.authenticate("jwt", { session: false }),
     (req, res) => {
-        res.render( "sessions/login" );
+        res.render("login");
     }
 );
 
-routerAuth.post( "/login", login );
+routerAuth.post("/login", login);
 
 // CREAR RUTA PARA MOSTRAR EL PERFIL DEL USUARIO
 
-routerAuth.get( '/current', viewUser );
+routerAuth.get("/current", viewUser);
 
-routerAuth.get( "/logout", logout );
+routerAuth.get("/logout", logout);
 
 export default routerAuth;

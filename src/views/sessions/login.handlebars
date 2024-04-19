@@ -1,11 +1,12 @@
-<div>
-    <h3>Bienvenido</h3>
-    <h1>Inicia sesión</h1>
-    <form action="/api/sessions/login" method="post">
-        <label for="">Email</label>
-        <input type="email" name="email">
-        <label for="">Password</label>
-        <input type="password" name="password">
-        <input type="submit" value="Enviar">
+<div class="container_views">
+    <h1 class="bienvenido">Bienvenido</h1>
+    <h2>Login</h2>
+    <form action="/api/sessions/login" method="post" class="form_login">
+        <label for="" class="input_label">Email</label>
+        <input type="email" name="email" class="input_data" />
+        <label for="" class="input_label">Password</label>
+        <input type="password" name="password" class="input_data" />
+        <input type="submit" value="Enviar" class="input_submit" />
     </form>
+    <a href="/api/views/form-local" class="link_register">Registrarse</a>
 </div>

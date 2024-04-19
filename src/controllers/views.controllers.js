@@ -49,6 +49,9 @@ export const viewPjwt = (req, res) => {
 export const viewlogin = (req, res) => {
     res.render("sessions/login");
 };
+export const profile = (req, res) => {
+    res.render("sessions/profile");
+};
 export const viewError = (req, res) => {
     res.render("errorview");
 };

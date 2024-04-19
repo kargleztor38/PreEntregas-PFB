@@ -39,7 +39,8 @@ app.set("views", __dirname + "/views"); // <-- Indicando la dirección de la car
 app.use(
     session({
         store: MongoStore.create({
-            mongoUrl: process.env.URL_MONGO_CONNECT
+            mongoUrl: process.env.URL_MONGO_CONNECT,
+            ttl: 20
         }),
         secret: process.env.SECRET,
         resave: true,

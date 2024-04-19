@@ -9,7 +9,8 @@ import {
     viewlogin,
     viewPl,
     viewPjwt,
-} from "../controllers/views.constrollers.js";
+    profile,
+} from "../controllers/views.controllers.js";
 
 const viewsRouter = new Router();
 
